@@ -1,0 +1,37 @@
+body{
+    background-color: rgb(250, 206, 110);
+}
+/* *{
+    padding: 0%;
+    margin: 0%;
+    border: 2px solid red;
+} */
+table{
+    width: 40px;;
+    height: 40px;
+    padding: 5px;
+    text-align: center;
+    font-size: 30px;
+    background-color: rgb(252, 182, 31);
+    /* color: rgb(250, 152, 6); */
+    /* font-weight: 900; */
+}
+td{
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    background-color: rgb(250, 206, 110);
+       /* padding-left:100px;
+       padding-top: 50px; */
+    text-align: center;
+    font-size: 30 px;
+}
+.white{
+    background-color: rgb(250, 152, 6);
+}
+
+   
+
+.black{
+    background-color: rgb(250, 206, 110);
+}
