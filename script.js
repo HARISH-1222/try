@@ -1,4 +1,4 @@
-// Killing the front pawn !
+// rook will kill but how
 
 // Want to add the magic move
 // want to add kill -> complited
@@ -120,9 +120,23 @@ function cli(x) {
         case "◼️":
           let rook = true;
 
-          //To Check if it is Goint to Jump
+          //To Check if it is Goint to Jump 
           rook = checkIfIsGoingJump(r, c, postion[0], postion[1], "b");
           console.log("check : ",rook);
+
+          // console.log(postion[2]);
+          // if(r <= postion[2] && ((c == postion[3]+1) || (c == postion[3]-1))){
+          //   if((arr[r][c][1] == "w")) 
+          //     {
+          //       console.log("kill");
+          //       bKilled++;
+          //       document.getElementById(`(${r},${c})`).textContent = value;
+          //       arr[r][c] = chessPiece;
+          //       isClick = false;
+          //       postion = 0;
+          //     }
+          //     break;
+          //   }
           if (rook && (r == postion[0] || c == postion[1])) {
             console.log(r, "-", c);
             console.log(postion);
@@ -563,7 +577,7 @@ function checkIfIsGoingJump(destinationRow,
           // console.log(arr[i]);
           console.log(arr[i][destinationColo]);
           console.log(arr[i][destinationColo][1]);
-          if(arr[i][destinationColo][1] == 'b' || arr[i][destinationColo][1] == 'b'){
+          if(arr[i][destinationColo][1] == 'b' || arr[i][destinationColo][1] == 'w'){
             return false;
           }
         }
@@ -582,7 +596,7 @@ function checkIfIsGoingJump(destinationRow,
           console.log(destinationRow+","+i);
           console.log(arr[destinationRow][i]);
           console.log(arr[destinationRow][i][1]);
-          if(arr[destinationRow][i][1] == 'w'){
+          if(arr[destinationRow][i][1] == 'w' || arr[destinationRow][i][1] == 'b'){
             return false;
           }
         }else{
@@ -590,7 +604,7 @@ function checkIfIsGoingJump(destinationRow,
           console.log(destinationRow+","+i);
           console.log("In the position : ",arr[destinationRow][i]);
           console.log("In the position b/r: ",arr[destinationRow][i][1]);
-          if(arr[destinationRow][i][1] == 'b'){
+          if(arr[destinationRow][i][1] == 'b' || arr[destinationRow][i][1] == 'w'){
             return false;
           }
 
@@ -599,7 +613,7 @@ function checkIfIsGoingJump(destinationRow,
           console.log(arr);
           console.log("In the position : ",arr[destinationRow][destinationColo]);
           console.log("In the position : b/w",arr[destinationRow][destinationColo][1]);
-          if(arr[destinationRow][destinationColo][1] == 'b'){
+          if(arr[destinationRow][destinationColo][1] == 'b' || arr[destinationRow][destinationColo][1] == 'w'){
             return false;
           }
         }
