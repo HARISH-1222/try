@@ -319,7 +319,7 @@ function cli(x) {
             }
           
           // Check if jump and if it is come backword
-          if(r >= postion[2] && (c == postion[3]+1) ||(c == postion[3]-1)){
+          if(r >= postion[2] && (c == postion[3]+1) ||(r >= postion[2] && (c == postion[3]-1))){
             if((arr[r][c][1] == "b")){
               document.getElementById(`(${r},${c})`).textContent = value;
               arr[r][c] = chessPiece;
