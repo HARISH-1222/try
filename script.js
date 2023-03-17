@@ -1,3 +1,5 @@
+// Killing the front pawn !
+
 // Want to add the magic move
 // want to add kill -> complited
 
@@ -85,23 +87,27 @@ function cli(x) {
             arr[postion[3]][postion[4]] = arr[r][c];
             document.getElementById(
               `(${postion[3]},${postion[4]})`
-            ).textContent = arr[r][c][0];
-          }
-          // for kill
-          console.log("out : ",postion[0]," ",postion[1]);
-          console.log("out : ",arr[r][postion[3]+1]);//[postion[0]],[postion[1]][0]);
-          
-          if (pawn && r >= postion[0]) {
-            // Check if jump and if it is come backword
-            if(r <= postion[2] && (c == postion[3]+1) ||(c == postion[3]-1))
+              ).textContent = arr[r][c][0];
+            }
+            console.log("out : ",postion[0]," ",postion[1]);
+            console.log("out : ",arr[r][postion[3]+1]);//[postion[0]],[postion[1]][0]);
+            
+            // for kill
+            console.log(pawn);
+            if(r <= postion[2] && ((c == postion[3]+1) || (c == postion[3]-1))){
             if((arr[r][c][1] == "w")) 
               {
+                console.log("kill");
                 bKilled++;
                 document.getElementById(`(${r},${c})`).textContent = value;
                 arr[r][c] = chessPiece;
                 isClick = false;
                 postion = 0;
               }
+              break;
+          }
+          if (pawn && r >= postion[0]) {
+            // Check if jump and if it is come backword
             if (r <= postion[2] && c == postion[3]) {
               document.getElementById(`(${r},${c})`).textContent = value;
               arr[r][c] = chessPiece;
@@ -313,15 +319,15 @@ function cli(x) {
             }
           
           // Check if jump and if it is come backword
-          if (pawn && r <= postion[0]) {
-            if(r >= postion[2] && (c == postion[3]+1) ||(c == postion[3]-1)){
-              if((arr[r][c][1] == "b")){
-                document.getElementById(`(${r},${c})`).textContent = value;
-                arr[r][c] = chessPiece;
-                isClick = false;
-                postion = 0;
-              }
+          if(r >= postion[2] && (c == postion[3]+1) ||(c == postion[3]-1)){
+            if((arr[r][c][1] == "b")){
+              document.getElementById(`(${r},${c})`).textContent = value;
+              arr[r][c] = chessPiece;
+              isClick = false;
+              postion = 0;
+            }
           }
+          if (pawn && r <= postion[0]) {
           if (r >= postion[2] && c == postion[3]) {
               document.getElementById(`(${r},${c})`).textContent = value;
               arr[r][c] = chessPiece;
@@ -539,22 +545,25 @@ function checkIfIsGoingJump(destinationRow,
       }
       for(let i=sourceRow ; i < destinationRow;i++){
         if(checkisWhite){
-          if(i == destinationRow-1){
-            wKilled++;
-            if(arr[i][destinationColo][1] != 'w')
-              return true
-            else return false
-          }
+          //i confuse here on kill
+          // if(i == destinationRow-1){
+          //   wKilled++;
+          //   if(arr[i][destinationColo][1] != 'w')
+          //   return true
+          //   else return false
+          // }
+      
           if(arr[i][destinationColo][1] == 'w' || arr[i][destinationColo][1] == 'b'){
             return false;
           }
         }else{
           console.log("Black");
+          console.log("sourceRow != destinationRow : ",destinationColo );
           console.log(i+","+destinationColo );
           // console.log(arr[i]);
           console.log(arr[i][destinationColo]);
           console.log(arr[i][destinationColo][1]);
-          if(arr[i][destinationColo][1] == 'b'){
+          if(arr[i][destinationColo][1] == 'b' || arr[i][destinationColo][1] == 'b'){
             return false;
           }
         }
