@@ -87,17 +87,21 @@ function cli(x) {
               `(${postion[3]},${postion[4]})`
             ).textContent = arr[r][c][0];
           }
-
-          // console.log("out : ",arr[r][postion[3] + 1]);
-          if (arr[r][postion[3] + 1][1] == "w" || "w" == arr[r][postion[3] - 1][1]) {
-            bKilled++;
-            document.getElementById(`(${r},${c})`).textContent = value;
-            arr[r][c] = chessPiece;
-            isClick = false;
-            postion = 0;
-          } else if (pawn && r >= postion[0]) {
+          // for kill
+          console.log("out : ",postion[0]," ",postion[1]);
+          console.log("out : ",arr[r][postion[3]+1]);//[postion[0]],[postion[1]][0]);
+          
+          if (pawn && r >= postion[0]) {
             // Check if jump and if it is come backword
-            // console.log(postion + " " + r + " " + c);
+            if(r <= postion[2] && (c == postion[3]+1) ||(c == postion[3]-1))
+            if((arr[r][c][1] == "w")) 
+              {
+                bKilled++;
+                document.getElementById(`(${r},${c})`).textContent = value;
+                arr[r][c] = chessPiece;
+                isClick = false;
+                postion = 0;
+              }
             if (r <= postion[2] && c == postion[3]) {
               document.getElementById(`(${r},${c})`).textContent = value;
               arr[r][c] = chessPiece;
@@ -210,6 +214,7 @@ function cli(x) {
         //Pawn
         case "👮🏿‍♂️":
           isClick = true;
+          console.log("r,c = ",r,c);
           if (r < 6) postion = [r, c, r + 2, Number(c), value];
           // Store in Array to check correct Move
           else if (r == 6) postion = [r, c, r + 1, Number(c), value];
@@ -422,9 +427,13 @@ function cli(x) {
         //Pawn
         case "👮🏻‍♂️":
           isClick = true;
+          console.log("r,c = ",r,c);
           if (r > 1) postion = [r, c, r - 2, Number(c), value];
           // Store in Array to check correct Move
-          else if (r == 1) postion = [r, c, r - 1, Number(c), value];
+          else if (r == 1) {
+            console.log("in else If");
+            postion = [r, c, r - 1, Number(c), value];
+          }
           else {
             // Magic :
             postion = [0, 0, value, r, c];
