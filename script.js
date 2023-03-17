@@ -108,7 +108,6 @@ function cli(x) {
               isClick = false;
               postion = 0;
             }
-          } else {
           }
           break;
 
@@ -302,22 +301,28 @@ function cli(x) {
       switch (value) {
         case "👮🏻‍♂️":
           let pawn = checkIfIsGoingJump(r, c, postion[0], postion[1], "w","👮🏻‍♂️");
-          console.log(r+" <= "+postion[2]);
-          if ("b" == arr[r][postion[3] + 1][1] ||"b" == arr[r][postion[3] - 1][1]) {
-            document.getElementById(`(${r},${c})`).textContent = value;
-            arr[r][c] = chessPiece;
-            isClick = false;
-            postion = 0;
-          }else if (pawn && r <= postion[0]) {
-            // Check if jump and if it is come backword
+
+
+            // For Magical Move
             if (postion[2] == 0 && postion[3] == 0) {
-              // For Magical Move
               arr[postion[3]][postion[4]] = arr[r][c];
               document.getElementById(
                 `(${postion[3]},${postion[4]})`
               ).textContent = arr[r][c][0];
             // } else if (r <= postion[2] && c == postion[3]) {
-            } else if (r >= postion[2] && c == postion[3]) {
+            }
+          
+          // Check if jump and if it is come backword
+          if (pawn && r <= postion[0]) {
+            if(r >= postion[2] && (c == postion[3]+1) ||(c == postion[3]-1)){
+              if((arr[r][c][1] == "b")){
+                document.getElementById(`(${r},${c})`).textContent = value;
+                arr[r][c] = chessPiece;
+                isClick = false;
+                postion = 0;
+              }
+          }
+          if (r >= postion[2] && c == postion[3]) {
               document.getElementById(`(${r},${c})`).textContent = value;
               arr[r][c] = chessPiece;
               console.log(arr);
